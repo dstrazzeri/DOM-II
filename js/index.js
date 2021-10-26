@@ -3,12 +3,31 @@ import { gsap } from "gsap";
 const logo = document.querySelector(".logo-heading");
 const funButton = document.querySelector(".btn");
 
+// PREVENT DEFAULT //
+const links = document.querySelectorAll('a');
+Array.from(links).forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        console.log("Ha-ha not going anywhere!")
+    })
+})
+
 // GSAP IMAGE MOVE IN //
 gsap.from("img", { duration: 3, x: 300, opacity: 0, scale: 0.5 });
 
 // LOAD EVENT //
 window.addEventListener("load", (event) => {
   console.log("let the fun begin!");
+});
+
+// CLICK COUNTER //
+funButton.addEventListener("click", (event) => {
+  funButton.textContent = `Fun Count: ${event.detail}`;
+});
+// CLICK //
+const fontChange = document.querySelector("h2");
+fontChange.addEventListener("click", (event) => {
+  event.target.style.fontFamily = "Comic Sans MS";
 });
 
 // MOUSE OVER & TIME OUT //
@@ -22,33 +41,6 @@ logo.addEventListener(
   },
   false
 );
-
-// CLICK COUNTER //
-funButton.addEventListener("click", (event) => {
-  funButton.textContent = `Fun Count: ${event.detail}`;
-});
-
-// WHEEL EVENT //
-function zoom(event) {
-  event.preventDefault();
-  if (event.deltaY < 0) {
-    scale *= event.deltaY * -1;
-  } else {
-    scale /= event.deltaY * 1;
-  }
-  scale = Math.min(Math.max(0.125, scale), 4);
-  el.style.transform = `scale(${scale})`;
-}
-let scale = 1;
-const el = document.querySelector(".footer");
-document.onwheel = zoom; //5.keydown
-
-// KEYDOWN //
-const bod = document.querySelector("body");
-bod.addEventListener("keydown", (event) => {
-  event.target.style.color = "hotPink";
-  event.target.style.backgroundColor = "red";
-});
 
 // MOUSE OVER //
 const busImg = document.querySelector("img:nth-of-type(1)");
@@ -68,6 +60,21 @@ busImg.addEventListener("mouseleave", (event) => {
   );
 });
 
+// WHEEL EVENT //
+function zoom(event) {
+  event.preventDefault();
+  if (event.deltaY < 0) {
+    scale *= event.deltaY * -1;
+  } else {
+    scale /= event.deltaY * 1;
+  }
+  scale = Math.min(Math.max(0.125, scale), 4);
+  el.style.transform = `scale(${scale})`;
+}
+let scale = 1;
+const el = document.querySelector(".footer");
+document.onwheel = zoom;
+
 // KEYUP //
 const bodUp = document.querySelector("body");
 bodUp.addEventListener("keyup", (event) => {
@@ -75,8 +82,9 @@ bodUp.addEventListener("keyup", (event) => {
   event.target.style.backgroundColor = "blue";
 });
 
-// CLICK //
-const fontChange = document.querySelector("h2");
-fontChange.addEventListener("click", (event) => {
-  event.target.style.fontFamily = "Comic Sans MS";
+// KEYDOWN //
+const bod = document.querySelector("body");
+bod.addEventListener("keydown", (event) => {
+  event.target.style.color = "hotPink";
+  event.target.style.backgroundColor = "red";
 });
