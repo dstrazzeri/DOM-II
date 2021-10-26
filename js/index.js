@@ -1,10 +1,10 @@
 import { gsap } from "gsap";
 
-// GSAP IMAGE MOVE IN //
-gsap.from("img", { duration: 3, x: 300, opacity: 0, scale: 0.5 });
-
 const logo = document.querySelector(".logo-heading");
 const funButton = document.querySelector(".btn");
+
+// GSAP IMAGE MOVE IN //
+gsap.from("img", { duration: 3, x: 300, opacity: 0, scale: 0.5 });
 
 // LOAD EVENT //
 window.addEventListener("load", (event) => {
@@ -43,6 +43,7 @@ let scale = 1;
 const el = document.querySelector(".footer");
 document.onwheel = zoom; //5.keydown
 
+// KEYDOWN //
 const bod = document.querySelector("body");
 bod.addEventListener("keydown", (event) => {
   event.target.style.color = "hotPink";
